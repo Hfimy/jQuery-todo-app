@@ -1,0 +1,26 @@
+{
+  "name": "jquery-todo-app",
+  "version": "1.0.0",
+  "description": "Todo app by jQuery",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hfimy/jQuery-todo-app.git"
+  },
+  "keywords": [
+    "jQuery",
+    "todo"
+  ],
+  "author": "hfimy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hfimy/jQuery-todo-app/issues"
+  },
+  "homepage": "https://github.com/Hfimy/jQuery-todo-app#readme",
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}
