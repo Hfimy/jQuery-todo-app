@@ -96,15 +96,25 @@ h1{
     display:block;
     width:230px;
     height:200px;
-    margin:30px auto;
+    margin:20px auto;
     padding:10px;
     background-color: #eee;
     font-size:16px;
     line-height: 30px;
 }
 .task-detail .remind{
-    padding-left:54px;
-    margin-top:-15px;
+    width:252px;
+    margin:0 auto;
+    /*padding-left:54px;*/
+    /*margin-top:-15px;*/
+}
+.task-detail .remind .date{
+    width:170px;
+}
+.task-detail .remind .desc-submit{
+    float:right;
+    width:60px;
+    height:28px;
 }
 .task-detail-mask{
     position: fixed;
@@ -131,8 +141,8 @@ h1{
 .clear input{
     margin-top:10px;
     border-radius:5px;
-    width:60px;
+    width:100px;
     height:30px;
     font-size:14px;
-
+    margin-right:10px;
 }

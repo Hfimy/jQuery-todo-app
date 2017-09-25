@@ -51,12 +51,13 @@
             } else {
                 task_list.unshift(task[0]);
             }
+            // console.log(task[0].isCompleted)
             update_task_list();
 
         })
     }
     function render_task_item(data, i) {
-        console.log(data.isCompleted)
+        // console.log(data.isCompleted)
         let list_item_tpl = `
             <li class="task-item" data-index=${i}>
                 <span> <input class='complete' type="checkbox" ${data.isCompleted ? 'checked' : null}></span>
@@ -94,7 +95,7 @@
         })
     }
     function delete_task(index) {
-        console.log(task_list);
+        // console.log(task_list);
         if (index === undefined || !task_list[index]) return;
         delete task_list[index];
         update_task_list()
@@ -135,7 +136,7 @@
             let title = $('.task-detail>.content').val();
             let text = $('.desc').val();
             let date = $('.remind>.date').val();
-            console.log(title + '\n' + text + '\n', date);
+            // console.log(title + '\n' + text + '\n', date);
             task_list[index] = { title, text, date }
             // store.set('task_list', task_list)
             update_task_list();
@@ -149,7 +150,7 @@
         // store.set('task_list', task_list);
         // console.log('task_list:', task_list);
         // console.log(store)
-        console.log(task_list);
+        // console.log(task_list);
     }
     init();
     $('.add-task').on('submit', function (e) {
@@ -185,11 +186,53 @@
         e.stopPropagation();
         $('.task-detail>.content').css({ borderColor: '#eee' })
     })
-    $('.clear>input').on('click', function () {
+    $('.clear>.all').on('click', function () {
         if (confirm('确认删除？')) {
             store.clear();
             task_list = [];
             render_task_list();
+        }
+    })
+    $('.clear>.all-completed').on('click', function () {
+        if (confirm('确认删除？')) {
+            // console.log(task_list)
+            // task_list.forEach((item,i,input)=>{
+            //     console.log(item);
+            //     if(item.isCompleted){
+            //         input.splice(i,1);
+            //     }
+            // })
+            let i = task_list.length - 1;
+            for (i; i >= 0; i--) {
+                if (task_list[i].isCompleted) {
+                    task_list.splice(i, 1);
+                }
+            }
+            // console.log(task_list);
+            update_task_list();
+            // // console.log(task_list);
+            // update_task_list();
+        }
+    })
+    $('.clear>.all-uncompleted').on('click', function () {
+        if (confirm('确认删除？')) {
+            // console.log(task_list)
+            // task_list.forEach((item,i,input)=>{
+            //     console.log(item);
+            //     if(item.isCompleted){
+            //         input.splice(i,1);
+            //     }
+            // })
+            let i = task_list.length - 1;
+            for (i; i >= 0; i--) {
+                if (!task_list[i].isCompleted) {
+                    task_list.splice(i, 1);
+                }
+            }
+            // console.log(task_list);
+            update_task_list();
+            // // console.log(task_list);
+            // update_task_list();
         }
     })
 })();
