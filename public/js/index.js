@@ -33,30 +33,33 @@
         listen_task_detail();
         listen_task_dbclick();
         listen_task_complete();
-        
+
     }
-    function listen_task_complete(){
-        $('.complete').on('click',function(e){
+    function listen_task_complete() {
+        $('.complete').on('click', function (e) {
             e.stopPropagation();
             // console.log($(this).is(':checked'))
-            let is_completed=$(this).is(':checked');
-            let index=$(this).parent().parent().data('index');
-            task_list[index].isCompleted=is_completed;
+            let is_completed = $(this).is(':checked');
+            let index = $(this).parent().parent().data('index');
+            task_list[index].isCompleted = is_completed;
+            let task = task_list.splice(index, 1);
             // console.log(index);
-            if(is_completed){
-                let task=task_list.splice(index,1);
+            if (is_completed) {
                 task_list.push(task[0]);
-                console.log(task_list);
-                update_task_list();
+                // console.log(task_list);
                 // $('.complete:last').attr('checked',true);
+            } else {
+                task_list.unshift(task[0]);
             }
+            update_task_list();
+
         })
     }
     function render_task_item(data, i) {
         console.log(data.isCompleted)
         let list_item_tpl = `
             <li class="task-item" data-index=${i}>
-                <span> <input class='complete' type="checkbox" ${data.isCompleted?'checked':null}></span>
+                <span> <input class='complete' type="checkbox" ${data.isCompleted ? 'checked' : null}></span>
                 <span class="task-content">${data.title}</span>
                 <div class='fr'>
                     <span class='action detail'>详情</span>
@@ -154,7 +157,7 @@
             title: '',
             text: '',
             date: '',
-            isCompleted:false
+            isCompleted: false
         }
         e.preventDefault();
         new_task.title = $(this).find('input[name=content]').val().trim();
