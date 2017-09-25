@@ -6,12 +6,13 @@ body{
     color:#eee;
 }
 .container{
-    max-width:600px;
+    max-width:700px;
     margin:0 auto;
     position: relative;
     padding:0 10px;
 }
 h1{
+    margin:70px 0 25px;
     text-align:center;
 }
 /*.add-task{
@@ -66,29 +67,52 @@ h1{
 .task-item:hover{
     background-color: #f1dbc5;
 }
-.task-detail-mask,.task-detail{
+.task-detail{
     position: absolute;
     display:none;
-}
-.task-detail{
     color:#333;
-    background-color: #fff;
+    background-color: #eee;
     width:50%;
-    height:100%;
-    bottom:0;
+    height:400px;
+    top:60px;
     right:0;
     padding:0;
 }
 .task-detail .content{
-    padding:10px;
+    /*padding-top:50px;*/
+    /*padding-left:54px;*/
+    background-color: #eee;
+    display:block;
+    width:250px;
+    margin:30px auto 0;
     font-weight: 900;
-    cursor: pointer;
+    font-style:italic;
+    border:none;
+    border-bottom:1px solid #eee;
+    padding-bottom:6px;
+    /*cursor: pointer;*/
+}
+.task-detail .desc{
+    display:block;
+    width:230px;
+    height:200px;
+    margin:30px auto;
+    padding:10px;
+    background-color: #eee;
+    font-size:16px;
+    line-height: 30px;
+}
+.task-detail .remind{
+    padding-left:54px;
+    margin-top:-15px;
 }
 .task-detail-mask{
+    position: fixed;
+    display:none;
     top:0;
-    bottom:0;
-    right:0;
     left:0;
+    right:0;
+    bottom:0;
     background-color: rgba(30,30,30,.5);
 }
 .fr{
@@ -103,4 +127,12 @@ h1{
 }
 .task-content{
     padding-left:5px;
+}
+.clear input{
+    margin-top:10px;
+    border-radius:5px;
+    width:60px;
+    height:30px;
+    font-size:14px;
+
 }
