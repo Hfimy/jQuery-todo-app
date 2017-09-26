@@ -12,9 +12,31 @@
         task_list = store.get('task_list') || [];
         // task_list = store.get('task_list');
         // console.log(task_list);
-        render_task_list();
+        if(task_list.length){
+            render_task_list();
+            task_remind_check();
+        }
     }
+    function task_remind_check(){
+        setInterval(function(){
+            for(let i=0;i<task_list.length;i++){
+                if(task_list[i].isCompleted||!task_list[i].date||task_list[i].informed){
+                    continue;   
+                }
+                let current_timeStamp=(new Date()).getTime();
+                let task_timeStamp=(new Date(task_list[i].date)).getTime();
+                // console.log(current_timeStamp,task_timeStamp);
+                if(0<(task_timeStamp-current_timeStamp)<1){
+                    update_task(i,{informed:true});
+                    show_msg(task_list[i].title);
+                }
 
+            }
+        },1000);
+    }
+    function update_task(i,item){
+        task_list[i]=Object.assign(task_list[i],item);
+    }
     function render_task_list() {
         let $task_list = $('.task-list');
         $task_list.html('');
@@ -114,6 +136,7 @@
         $('.task-detail-mask').show();
         render_task_detail(index);
     }
+
     //渲染指定task的详细信息
     function render_task_detail(index) {
         if (index === undefined || task_list[index] === undefined) return;
