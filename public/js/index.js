@@ -59,7 +59,7 @@
     function render_task_item(data, i) {
         // console.log(data.isCompleted)
         let list_item_tpl = `
-            <li class="task-item" data-index=${i}>
+            <li class="task-item ${data.isCompleted?'completed':''}" data-index=${i}>
                 <span> <input class='complete' type="checkbox" ${data.isCompleted ? 'checked' : null}></span>
                 <span class="task-content">${data.title}</span>
                 <div class='fr'>
@@ -121,10 +121,13 @@
         <input class="content" value="${task_list[index].title}">
         <textarea class='desc'>${task_list[index].text}</textarea>
         <div class="remind">
-            <input class='date' type="date" value="${task_list[index].date}">
+            <input id='datetimepicker' class='date' type="text" value="${task_list[index].date}">
             <button class='desc-submit' type='submit'>更新</button>
         </div>`;
         $('.task-detail').html(task_detail_tpl);
+        // jQuery('#datetimepicker').datetimepicker();
+        console.log($('#datetimepicker'));
+        $('#datetimepicker').datetimepicker();
         $('.desc').focus();
         $('.task-detail>.content').on('click', function (e) {
             e.stopPropagation();

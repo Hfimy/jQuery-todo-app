@@ -6,7 +6,7 @@ body{
     color:#eee;
 }
 .container{
-    max-width:700px;
+    max-width:600px;
     margin:0 auto;
     position: relative;
     padding:0 10px;
@@ -25,7 +25,7 @@ h1{
     float:left;
     width:80%;
     margin-right:2%;  
-    background-color: #ddd;
+    background-color: #fff;
     height:38px;
     border:0;
     border-radius:5px;
@@ -141,8 +141,23 @@ h1{
 .clear input{
     margin-top:10px;
     border-radius:5px;
-    width:100px;
+    width:90px;
     height:30px;
     font-size:14px;
     margin-right:10px;
+}
+.task-item.completed{
+    color:#aaa;
+    /*background-color: rgba(255,255,255,.7)*/
+    background-color: #ccc;
+    opacity: 0.4;
+}
+.task-item.completed:after{
+    content:'';
+    display:block;
+    position: relative;
+    top:-9px;
+    height:1px;
+    background-color: #aaa;
+    margin-left:22px;
 }
