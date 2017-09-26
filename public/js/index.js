@@ -12,9 +12,30 @@
         task_list = store.get('task_list') || [];
         // task_list = store.get('task_list');
         // console.log(task_list);
-        render_task_list();
+        if(task_list.length){
+            render_task_list();
+            task_remind_check();
+        }
     }
 
+    function task_remind_check(){
+        setInterval(function(){
+            for(let i=0;i<task_list.length;i++){
+                if(task_list[i].isCompleted||!task_list[i].date||task_list[i].informed) continue;
+                let stamp=(new Date()).getTime()-(new Date(task_list[i].date)).getTime();
+                console.log(stamp);
+                if(stamp>1){
+                    update_task(i,{informed:true});
+                    show_msg(task_list[i].title);
+                }
+            }
+        },1000)
+    }
+    function update_task(i,obj){
+        Object.assign(task_list[i],obj);
+        // console.log(task_list[i]);
+        store.set('task_list',task_list);
+    }
     function render_task_list() {
         let $task_list = $('.task-list');
         $task_list.html('');
@@ -126,7 +147,7 @@
         </div>`;
         $('.task-detail').html(task_detail_tpl);
         // jQuery('#datetimepicker').datetimepicker();
-        console.log($('#datetimepicker'));
+        // console.log($('#datetimepicker'));
         $('#datetimepicker').datetimepicker();
         $('.desc').focus();
         $('.task-detail>.content').on('click', function (e) {
@@ -139,8 +160,13 @@
             let title = $('.task-detail>.content').val();
             let text = $('.desc').val();
             let date = $('.remind>.date').val();
+            let obj={title,text,date};
+            if(date!==task_list[index].date){
+                obj.informed=false;
+            }
             // console.log(title + '\n' + text + '\n', date);
-            task_list[index] = { title, text, date }
+            // task_list[index] = { title, text, date }
+            Object.assign(task_list[index],obj);
             // store.set('task_list', task_list)
             update_task_list();
         })
