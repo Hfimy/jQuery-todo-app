@@ -115,11 +115,13 @@
         return list_item_tpl;
     }
     function listen_task_delete() {
-        $('.action.delete').on('click', function () {
+        $('.action.delete').on('click', function (e) {
+            e.stopPropagation();
             let $item = $(this).parent().parent();
             let index = $item.data('index');
             // console.log($item.data('index'));
-            confirm('确定删除？') ? delete_task(index) : null;
+            // confirm('确定删除？') ? delete_task(index) : null;
+            _confirm(delete_task.bind(null,index));
         })
     }
     function listen_task_detail() {
