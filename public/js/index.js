@@ -59,7 +59,6 @@
         $('.notify-item').fadeIn()
     }
     function render_task_list() {
-        if(task_list.length) return;
         let $task_list = $('.task-list');
         $task_list.html('');
         // $task_list.children('li').remove();
@@ -200,8 +199,10 @@
     }
 
     function add_task(new_task) {
+        console.log(task_list);
         task_list.unshift(new_task);
         // console.log('task_list:', task_list)
+          console.log('here');
         update_task_list();
         // store.set('task_list', task_list);
         // console.log('task_list:', task_list);
@@ -210,13 +211,13 @@
     }
     init();
     $('.add-task').on('submit', function (e) {
+        e.preventDefault();
         let new_task = {
             title: '',
             text: '',
             date: '',
             isCompleted: false
         }
-        e.preventDefault();
         new_task.title = $(this).find('input[name=content]').val().trim();
 
         $(this).find('input[name=content]').val("")
