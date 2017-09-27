@@ -19,7 +19,7 @@
     function task_remind_check() {
         setInterval(function () {
             // console.log(task_list.length);
-            if(task_list.length) return;
+            // if(task_list.length) return;
             for (let i = 0; i < task_list.length; i++) {
                 if (task_list[i]) {
                     if (task_list[i].isCompleted || !task_list[i].date || task_list[i].informed) continue;
