@@ -12,15 +12,14 @@
         task_list = store.get('task_list') || [];
         // task_list = store.get('task_list');
         // console.log(task_list);
-        if (task_list.length) {
-            render_task_list();
-            task_remind_check();
-        }
+        render_task_list();
+        task_remind_check();
     }
 
     function task_remind_check() {
         setInterval(function () {
             // console.log(task_list.length);
+            if(task_list.length) return;
             for (let i = 0; i < task_list.length; i++) {
                 if (task_list[i]) {
                     if (task_list[i].isCompleted || !task_list[i].date || task_list[i].informed) continue;
@@ -60,6 +59,7 @@
         $('.notify-item').fadeIn()
     }
     function render_task_list() {
+        if(task_list.length) return;
         let $task_list = $('.task-list');
         $task_list.html('');
         // $task_list.children('li').remove();
@@ -121,7 +121,7 @@
             let index = $item.data('index');
             // console.log($item.data('index'));
             // confirm('确定删除？') ? delete_task(index) : null;
-            _confirm(delete_task.bind(null,index));
+            _confirm(delete_task.bind(null, index));
         })
     }
     function listen_task_detail() {
